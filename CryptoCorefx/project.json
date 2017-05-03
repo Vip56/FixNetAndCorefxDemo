@@ -5,11 +5,13 @@
   },
 
   "dependencies": {
+    "CoreCompat.System.Drawing": "1.0.0-beta006",
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.1"
+      "version": "1.0.0"
     },
-    "Portable.BouncyCastle": "1.8.1.2"
+    "Portable.BouncyCastle": "1.8.1.2",
+    "runtime.linux-x64.CoreCompat.System.Drawing": "1.0.0-beta009"
   },
 
   "frameworks": {

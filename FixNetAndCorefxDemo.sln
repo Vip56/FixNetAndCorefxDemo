@@ -9,6 +9,11 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CryptoCorefx", "CryptoCoref
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoNetFw", "CryptoNetFw\CryptoNetFw.csproj", "{837990ED-8652-448E-8B43-0AA962090B66}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{E656C264-0527-4352-8FAF-BC1A16C0C16D}"
+	ProjectSection(SolutionItems) = preProject
+		DockerFile = DockerFile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

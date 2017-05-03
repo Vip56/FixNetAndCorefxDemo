@@ -11,8 +11,12 @@ namespace CryptoCorefx
         {
             DESTest test = new DESTest();
             var encodeStr = test.Encode("我是一个测试的数据");
-
             var decodeStr = test.Decode(encodeStr);
+
+            ImageTest imageTest = new ImageTest();
+            imageTest.Process().Wait();
+
+            Console.ReadKey();
         }
     }
 }
