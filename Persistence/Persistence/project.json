@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true
@@ -9,7 +9,10 @@
       "type": "platform",
       "version": "1.0.1"
     },
-    "Proto.Actor": "0.1.8"
+    "PersistenceMessage": "1.0.0-*",
+    "Proto.Actor": "0.1.8",
+    "Proto.Persistence": "0.1.8",
+    "Proto.Persistence.Sqlite": "0.1.8"
   },
 
   "frameworks": {

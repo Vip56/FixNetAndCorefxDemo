@@ -1,15 +1,18 @@
-﻿{
+{
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true
   },
 
   "dependencies": {
+    "Messages": "1.0.0-*",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"
     },
-    "Proto.Actor": "0.1.8"
+    "Proto.Actor": "0.1.8",
+    "Proto.Mailbox": "0.1.8",
+    "Proto.Remote": "0.1.8"
   },
 
   "frameworks": {
