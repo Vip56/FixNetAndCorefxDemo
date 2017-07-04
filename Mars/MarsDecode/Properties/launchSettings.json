@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MarsDecode": {
+      "commandName": "Project",
+      "commandLineArgs": "G:\\MarsLog_20170703.xlog"
+    }
+  }
+}
