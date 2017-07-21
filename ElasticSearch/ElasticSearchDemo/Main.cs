@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using System.Linq.Expressions;
 
 namespace ElasticSearchDemo
 {
@@ -190,6 +191,38 @@ namespace ElasticSearchDemo
             Assert.NotNull(searchResponse);
         }
 
+        [Fact]
+        public async Task SearchWithOr()
+        {
+            var firstSearchResponse = await _client.SearchAsync<Project>(s => s
+              .Index("test")
+              .Type("projects")
+              .Query(q => q
+                .Term(x => x.Name, "测试项目") || q
+                .Term(x => x.Id, "1")));
 
+            Assert.NotNull(firstSearchResponse);
+            
+            var secondSearchResponse = _client.Search<Project>(new SearchRequest<Project>
+            {
+                Query = new TermQuery { Field = "Name", Value = "测试项目" } ||
+                        new TermQuery { Field = "id", Value = "1" }
+            });
+
+            Assert.NotNull(secondSearchResponse);
+        }
+
+        [Fact]
+        public async Task SearchWithAnd()
+        {
+            var firstSearchResponse = await _client.SearchAsync<Project>(s => s
+              .Index("test")
+              .Type("projects")
+              .Query(q => q
+                .Term(p => p.Id, "1") && q
+                .Term(p => p.Name, "项")));
+
+            Assert.NotNull(firstSearchResponse);
+        }
     }
 }
