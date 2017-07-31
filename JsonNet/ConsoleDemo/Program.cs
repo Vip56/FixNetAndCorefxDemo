@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Threading.Tasks;
 
 namespace ConsoleDemo
@@ -25,6 +28,21 @@ namespace ConsoleDemo
 
         public static void Main(string[] args)
         {
+            var _serializer = new JsonSerializer
+            {
+                TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple,
+                Formatting = Formatting.None,
+                CheckAdditionalContent = true,
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                ObjectCreationHandling = ObjectCreationHandling.Auto,
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.All,
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
             DotoA a = new DotoA
             {
                 Now = DateTime.Now,
@@ -41,7 +59,20 @@ namespace ConsoleDemo
                 }
             };
 
-            Console.WriteLine(JsonConvert.SerializeObject(a));
+            string msgStr;
+            using (var sw = new StringWriter())
+            {
+                _serializer.Serialize(sw, a);
+                msgStr = sw.GetStringBuilder().ToString();
+            }
+
+            Console.WriteLine(msgStr);
+
+            using (var jr = new JsonTextReader(new StringReader(msgStr)))
+            {
+                var obj = _serializer.Deserialize<DotoA>(jr);
+                Console.WriteLine(JsonConvert.SerializeObject(obj));
+            }
 
             Console.ReadKey();
         }
